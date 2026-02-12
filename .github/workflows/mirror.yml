@@ -6,8 +6,6 @@ on:
     tags: [ '*' ]
   release:
     types: [published, edited]
-  pull_request:
-    branches: [ main, master ]
   workflow_dispatch:
 
 jobs:
@@ -17,79 +15,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-        fetch-depth: 0
+        fetch-depth: 0  # Важно! Полная история
         fetch-tags: true
     
     - name: Push to GitVerse
       run: |
         git remote add gitverse https://${{ secrets.GITVERSE_TOKEN }}@gitverse.ru/Katerok27153/study_2025-2026_net-admin.git
         git push --mirror gitverse
-    
-    - name: Create Release on GitVerse
-      if: github.event_name == 'release'
-      env:
-        GITVERSE_TOKEN: ${{ secrets.GITVERSE_TOKEN }}
-      run: |
-        # Получаем информацию о релизе
-        TAG="${{ github.event.release.tag_name }}"
-        NAME="${{ github.event.release.name || github.event.release.tag_name }}"
-        BODY="${{ github.event.release.body }}"
-        PRERELEASE="${{ github.event.release.prerelease }}"
-        
-        # Экранируем body для JSON
-        BODY_ESCAPED=$(echo "$BODY" | jq -R -s '.')
-        
-        # Создаем JSON для запроса
-        JSON_DATA=$(jq -n \
-          --arg tag_name "$TAG" \
-          --arg name "$NAME" \
-          --arg body "$BODY" \
-          --arg prerelease "$PRERELEASE" \
-          '{tag_name: $tag_name, name: $name, body: $body, prerelease: ($prerelease == "true")}')
-        
-        # Отправляем запрос к API GitVerse
-        RESPONSE=$(curl -s -X POST \
-          -H "Authorization: token $GITVERSE_TOKEN" \
-          -H "Accept: application/json" \
-          -H "Content-Type: application/json" \
-          -d "$JSON_DATA" \
-          "https://gitverse.ru/api/v1/repos/Katerok27153/study_2025-2026_net-admin/releases")
-        
-        # Проверяем результат
-        if echo "$RESPONSE" | grep -q "id"; then
-          echo "✅ Релиз $TAG успешно создан на GitVerse!"
-        else
-          echo "❌ Ошибка создания релиза:"
-          echo "$RESPONSE"
-          exit 1
-        fi
-    
-    - name: Upload Release Assets
-      if: github.event_name == 'release'
-      env:
-        GITVERSE_TOKEN: ${{ secrets.GITVERSE_TOKEN }}
-      run: |
-        # Скачиваем и загружаем файлы релиза
-        TAG="${{ github.event.release.tag_name }}"
-        
-        # Получаем список assets
-        ASSETS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          "https://api.github.com/repos/${{ github.repository }}/releases/tags/$TAG" | jq -r '.assets[]?.browser_download_url')
-        
-        # Скачиваем и загружаем каждый файл
-        for URL in $ASSETS; do
-          FILENAME=$(basename "$URL")
-          echo "Загружаем $FILENAME..."
-          
-          # Скачиваем файл
-          curl -s -L -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -o "/tmp/$FILENAME" "$URL"
-          
-          # Загружаем на GitVerse (нужен эндпоинт для загрузки файлов)
-          curl -X POST \
-            -H "Authorization: token $GITVERSE_TOKEN" \
-            -F "file=@/tmp/$FILENAME" \
-            "https://gitverse.ru/api/v1/repos/Katerok27153/study_2025-2026_net-admin/releases/$TAG/assets"
-          
-          echo "✅ $FILENAME загружен"
-        done
