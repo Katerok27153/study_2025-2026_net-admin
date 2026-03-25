@@ -98,7 +98,7 @@ license: "CC BY"
 
 Далее убедились в работоспособности соединения между msk-donskaya-eavernikovskaya-sw-1 и msk-pavlovskaya-eavernikovskaya-sw-1 ([рис. @fig-021])
 
-![Проверка неработоспособности соединения между коммутаторами msk-donskaya-eavernikovskaya-sw-1 и msk-pavlovskaya-eavernikovskaya-sw-1](image/лаба7_21.png){#fig-021 width=70%}
+![Проверка работоспособности соединения между коммутаторами msk-donskaya-eavernikovskaya-sw-1 и msk-pavlovskaya-eavernikovskaya-sw-1](image/лаба7_21.png){#fig-021 width=70%}
 
 ## Контрольные вопросы + ответы
 
