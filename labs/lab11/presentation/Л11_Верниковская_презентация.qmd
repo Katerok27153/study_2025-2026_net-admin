@@ -1,0 +1,208 @@
+---
+# Preamble
+
+## Author
+author:
+  name: Верниковская Екатерина Андреевна
+  degrees: DSc
+  email: 11322361366@pfur.ru
+  affiliation:
+    - name: Российский университет дружбы народов
+      country: Российская Федерация
+      postal-code: 117198
+      city: Москва
+      address: ул. Миклухо-Маклая, д. 6
+
+## Title
+title: Отчёт по лабораторной работе №11
+subtitle: Администрирование локальных сетей
+license: CC BY
+date: 2026-04-23
+
+## Generic options
+lang: ru-RU
+crossref:
+  lof-title: Список иллюстраций
+  lot-title: Список таблиц
+  lol-title: Листинги
+
+## Fonts 
+mainfont: PT Serif 
+romanfont: PT Serif 
+sansfont: PT Sans 
+monofont: PT Mono 
+mainfontoptions: Ligatures=TeX 
+romanfontoptions: Ligatures=TeX 
+sansfontoptions: Ligatures=TeX,Scale=MatchLowercase 
+monofontoptions: Scale=MatchLowercase,Scale=0.9
+
+## Formats
+format:
+### Pdf output format
+  beamer:
+    toc: true
+    toc-title: Содержание
+    number-sections: true
+    colorlinks: false
+    toc-depth: 2
+    slide_level: 2
+    aspectratio: 169
+    section-titles: true
+    theme: metropolis
+    themeoptions: progressbar=frametitle,sectionpage=progressbar,numbering=fraction
+    pdf-engine: xelatex
+    fontenc: T2A
+#### Language
+    babel-lang: russian
+    babel-otherlangs: english
+
+### Html output
+  revealjs:
+    transition: slide
+    margin: 0.2
+    smaller: false
+    output-ext: html
+    theme: beige
+    logo: _resources/image/logo_rudn.png
+---
+
+# Вводная часть
+
+## Цель работы
+
+Цель данной работы - провести подготовительные мероприятия по подключению локальной сети организации к Интернету
+
+## Задание
+
+1. Построить схему подсоединения локальной сети к Интернету
+2. Построить модельные сети провайдера и сети Интернет
+3. Построить схемы сетей L1, L2, L3
+
+# Выполнение лабораторной работы
+
+## Выполнение лабораторной работы
+
+\begin{table}[H]
+\centering
+\caption{Распределение ip-адресов модельного Интернета}
+\label{table:ip}
+\begin{tabular}{|p{5cm}|p{6cm}|}
+\hline
+\textbf{IP-адреса} & \textbf{Примечание} \\ \hline
+192.0.2.1 & provider-eavernikovskaya-gw-1 \\ \hline
+192.0.2.11 & www.yandex.ru \\ \hline
+192.0.2.12 & stud.rudn.university \\ \hline
+192.0.2.13 & esystem.pfur.ru \\ \hline
+192.0.2.14 & www.rudn.ru \\ \hline
+\end{tabular}
+\end{table}
+
+## Работа в DIA
+
+![Схема сети с NAT](image/лаба11_1.png){#fig-001 width=60%}
+
+## Работа в DIA
+
+![Схема L1 сети с выходом в Интернет](image/лаба11_2.png){#fig-002 width=40%}
+
+## Работа в DIA
+
+![Схема L2 сети с выходом в Интернет](image/лаба11_3.png){#fig-003 width=40%}
+
+## Работа в DIA
+
+![Схема L3 сети с выходом в Интернет](image/лаба11_4.png){#fig-004 width=50%}
+
+## Корректировка таблиц
+
+![Таблица распределения IP-адресов](image/лаба11_5.png){#fig-005 width=35%}
+
+## Корректировка таблиц
+
+![Таблица портов](image/лаба11_6.png){#fig-006 width=50%}
+
+## Работа в Cisco Packet Tracer
+
+![Размещение новых устройств](image/лаба11_7.png){#fig-007 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![Схема сети в физической рабочей области Packet Tracer](image/лаба11_8.png){#fig-008 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![Оборудование в здании сети провайдера](image/лаба11_9.png){#fig-009 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![Оборудование в здании сети модельного Интернета](image/лаба11_10.png){#fig-010 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![msk-donskaya-eavernikovskaya-mc-2 с модулями PT-REPEATER-NM-1FFE и PT-REPEATER-NM-1CFE](image/лаба11_11.png){#fig-011 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![provider-eavernikovskaya-mc-1 с модулями PT-REPEATER-NM-1FFE и PT-REPEATER-NM-1CFE](image/лаба11_12.png){#fig-012 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![provider-eavernikovskaya-mc-2 с модулями PT-REPEATER-NM-1FFE и PT-REPEATER-NM-1CFE](image/лаба11_13.png){#fig-013 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![internet-eavernikovskaya-mc-1 с модулями PT-REPEATER-NM-1FFE и PT-REPEATER-NM-1CFE](image/лаба11_14.png){#fig-014 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![Соединение объектов](image/лаба11_15.png){#fig-015 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![Схема сети с выходом в Интернет](image/лаба11_16.png){#fig-016 width=60%}
+
+## Работа в Cisco Packet Tracer
+
+![Задание адреса шлюза для www.yandex.ru](image/лаба11_17.png){#fig-017 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![Задание ip-адреса шлюза для www.yandex.ru](image/лаба11_18.png){#fig-018 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![Задание адреса шлюза для stud.rudn.university](image/лаба11_19.png){#fig-019 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![Задание ip-адреса шлюза для stud.rudn.university](image/лаба11_20.png){#fig-020 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![Задание адреса шлюза для esystem.pfur.ru](image/лаба11_21.png){#fig-021 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![Задание ip-адреса шлюза для esystem.pfur.ru](image/лаба11_22.png){#fig-022 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![Задание адреса шлюза для www.rudn.ru](image/лаба11_23.png){#fig-023 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![Задание ip-адреса шлюза для www.rudn.ru](image/лаба11_24.png){#fig-024 width=70%}
+
+## Работа в Cisco Packet Tracer
+
+![DNS-записи на сервере DNS в сети «Донская»](image/лаба11_25.png){#fig-025 width=60%}
+
+# Подведение итогов
+
+## Выводы
+
+В ходе выполнения лабораторной работы №11 мы провели подготовительные мероприятия по подключению локальной сети организации к Интернету
+
+## Список литературы
+
+1. [Лаборатораня работа №11](https://esystem.rudn.ru/pluginfile.php/3093917/mod_resource/content/10/011-nat-planning.pdf)
